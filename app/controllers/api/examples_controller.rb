@@ -1,15 +1,15 @@
 class Api::ExamplesController < ApplicationController
-  def get_fortune
-    fortune_bank = ["A lifetime friend shall soon be made.", "A lifetime of happiness lies ahead of you.", "A light heart carries you through all the hard times."]
-    #random select from #fortunes
-    @fortune = fortune_bank.sample
-    render "fortune_view.json.jbuilder"
-  end
-
   def get_number
-    @lotto = "does this work"
-    render "lotto_view.json.jbuilder"
-  end
-end
+    fortune_bank = ["A lifetime friend shall soon be made.", "A lifetime of happiness lies ahead of you.", "A light heart carries you through all the hard times."]
+    @fortune = fortune_bank.sample
 
-#(rand(10..60))
+    # @lotto = "#{(rand(1..60))}, #{(rand(1..60))}, #{(rand(1..60))}, #{(rand(1..60))}, #{(rand(1..60))}, #{(rand(1..60))}"
+    @lottery_numbers =[]
+    6.times do
+      number = rand(1..60)
+      @lottery_numbers << number
+    end
+    render "main_view.json.jbuilder"
+  end
+
+end
